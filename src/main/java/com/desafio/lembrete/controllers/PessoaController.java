@@ -34,11 +34,10 @@ public class PessoaController {
     public ResponseEntity <?> cadastrar(@RequestBody final Pessoa pessoa){
         try{
             this.service.cadastrar(pessoa);
-        }
-        catch (Exception e){
+        } catch (Exception e){
             return ResponseEntity.badRequest().body("Erro " + e.getMessage());
         }
-        return ResponseEntity.ok("Cadastro realizado com sucesso!");
+        return ResponseEntity.ok("Cadastro realizado com sucesso");
     }
 
     @PutMapping("/{id}")
@@ -52,7 +51,7 @@ public class PessoaController {
         catch (RuntimeException e){
             return ResponseEntity.internalServerError().body("Erro " + e.getMessage());
         }
-        return ResponseEntity.ok("Pessoa atualizada com sucesso!");
+        return ResponseEntity.ok("Pessoa atualizada com sucesso");
     }
 
     @DeleteMapping
@@ -64,6 +63,6 @@ public class PessoaController {
         catch(DataIntegrityViolationException e){
             return ResponseEntity.internalServerError().body("Erro" + e.getCause().getCause().getMessage());
         }
-        return ResponseEntity.ok("Pessoa deletada com sucesso!");
+        return ResponseEntity.ok("Pessoa deletada com sucesso");
     }
 }
