@@ -1,5 +1,6 @@
 package com.desafio.lembrete.services;
 
+import com.desafio.lembrete.dto.PessoaDTO;
 import com.desafio.lembrete.entities.Pessoa;
 import com.desafio.lembrete.repositories.PessoaRepository;
 import jakarta.transaction.Transactional;
@@ -13,11 +14,18 @@ public class PessoaService {
     private PessoaRepository repository;
 
     @Transactional
-    public void cadastrar(@RequestBody final Pessoa pessoa) {
-        if (pessoa.getId() != null) {
+    public Pessoa cadastrar(@RequestBody final PessoaDTO pessoaDTO) {
+        if (pessoaDTO.getId() != null) {
             throw new RuntimeException("o campo ID não deve ser inserido");
         }
-        this.repository.save(pessoa);
+        Pessoa pessoab = toPessoaDTO(pessoaDTO);
+        return this.repository.save(pessoab);
+    }
+
+    public Pessoa toPessoaDTO(PessoaDTO pessoaDTO){
+        Pessoa pessoaTemp = new Pessoa();
+        pessoaTemp.setNome(pessoaDTO.getNome());
+        return pessoaTemp;
     }
 
     @Transactional

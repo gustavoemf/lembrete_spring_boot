@@ -8,15 +8,15 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 @Getter @Setter
-public class Lembrete {
+public class LembreteDTO {
     private Long id;
     private String nome;
     private LocalDateTime data;
     private List<Pessoa> pessoas = new ArrayList<>();
 
-    public Lembrete() {}
+    public LembreteDTO() {}
 
-    public Lembrete(Long id, String nome, LocalDateTime data, List<Pessoa> pessoas) {
+    public LembreteDTO(Long id, String nome, LocalDateTime data, List<Pessoa> pessoas) {
         this.id = id;
         this.nome = nome;
         this.data = data;

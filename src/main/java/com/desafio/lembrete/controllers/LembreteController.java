@@ -25,6 +25,7 @@ public class LembreteController {
             return ResponseEntity.ok(lembretes);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Erro " + e.getMessage());
+            //return ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 

@@ -1,5 +1,6 @@
 package com.desafio.lembrete.controllers;
 
+import com.desafio.lembrete.dto.PessoaDTO;
 import com.desafio.lembrete.entities.Pessoa;
 import com.desafio.lembrete.repositories.PessoaRepository;
 import com.desafio.lembrete.services.PessoaService;
@@ -31,13 +32,12 @@ public class PessoaController {
     }
 
     @PostMapping
-    public ResponseEntity <?> cadastrar(@RequestBody final Pessoa pessoa){
+    public ResponseEntity<Pessoa> cadastrar(@RequestBody final PessoaDTO pessoaDTO){
         try{
-            this.service.cadastrar(pessoa);
+            return ResponseEntity.ok(this.service.cadastrar(pessoaDTO));
         } catch (Exception e){
-            return ResponseEntity.badRequest().body("Erro " + e.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
-        return ResponseEntity.ok("Cadastro realizado com sucesso");
     }
 
     @PutMapping("/{id}")

@@ -7,15 +7,14 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
+@Getter @Setter
 @Table(name = "pessoa", schema = "public")
 public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter @Setter
     private Long id;
-    @Getter @Setter
     private String nome;
-    @ManyToMany
+    @ManyToMany(mappedBy = "pessoas")
     private List<Lembrete> lembretes;
 
     public Pessoa() {}
